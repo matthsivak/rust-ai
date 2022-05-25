@@ -21,7 +21,7 @@ impl Layer {
   pub fn feed_forward(&mut self, inputs: &Vec<f32>) -> Vec<i32> {
     let mut outputs = Vec::new();
 
-    for mut neuron in self.neurons.copy() {
+    for neuron in self.neurons.iter_mut() {
       outputs.push(neuron.feed_forward(inputs));
     }
 
@@ -29,7 +29,7 @@ impl Layer {
   }
 
   pub fn mutate(&mut self, rate: f32) {
-    for mut neuron in self.neurons {
+    for neuron in self.neurons.iter_mut() {
       neuron.mutate(rate);
     }
   }
