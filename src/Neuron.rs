@@ -1,6 +1,6 @@
 use rand::Rng;
 
-#[derive(Debug)]
+#[derive(Debug,  Clone)]
 pub struct Neuron {
   weights: Vec<f32>,
   bias: f32,
@@ -45,9 +45,9 @@ impl Neuron {
   // }
 
   pub fn mutate(&mut self, rate: f32) {
-    for (let i = 0; i < this.weights.length; i++) {
+    for mut w in &self.weights {
       if rand::thread_rng().gen_range(0.0..1.0) < rate {
-        self.weights[i] = rand::thread_rng().gen_range(-1.0..1.0);
+        w = &rand::thread_rng().gen_range(-1.0..1.0);
       }
     }
   }
